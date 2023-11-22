@@ -37,14 +37,14 @@ include'connect.php';
                         <span class="d-none d-md-inline">user name</span>
                     </div>
                     <ul class="nav d-flex flex-column">
-                        <li><a href="dashboard.html" class="text-decoration-none text-warning px-4 py-2"><i
+                        <li><a href="dashboard.php" class="text-decoration-none text-warning px-4 py-2"><i
                                     class=" fa-solid fa-border-all"></i>
                                 <span class="d-none d-md-inline text-warning">Dashboard</span></a></li>
-                        <li><a href="favorite.html" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="film.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-heart"></i> <span
                                     class="d-none d-md-inline">Films</span></a>
                         </li>
-                        <li><a href="to-watch.html" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="cast.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-bookmark"></i>
                                 <span class="d-none d-md-inline ">Cast</span></a></li>
                         <li><a href="genre.php" class="text-decoration-none text-white px-4 py-2"><i
@@ -63,6 +63,14 @@ include'connect.php';
             <table class="table table-dark table-hover">
 
             </table>
+            <form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Genre</label>
+    <input type="text" class="form-control"  aria-describedby="genre-name">
+  </div>
+  
+  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+</form>
 
    
             </div>
