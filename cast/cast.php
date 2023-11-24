@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
                   <!-- Button trigger modal -->
                   <div class="d-flex justify-content-between">
                     <h2 class=" text-warning ">Listes de cast</h2>
-                    <button type="button" class="btn btn-warning mb-3 " data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning mb-3 fs-5" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Ajouter
                     </button>
@@ -124,10 +124,10 @@ if(isset($_POST['submit'])){
                                         <?php echo $age ?>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal2"><a href="update.php?updatedid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Modifier</a></button>
-                                        <button type="button" name="delete" class="btn btn-danger "><a
+                                        <button type="button" name="delete" class="btn btn-outline-danger "><a
                                                 href="delete.php?deletedid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Supprimer</a></button>
                                     </td>

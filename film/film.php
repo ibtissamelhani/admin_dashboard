@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
                 <div class="d-flex justify-content-between">
                     <h2 class=" text-warning ">Listes des films</h2>
-                    <button type="button" class="btn btn-warning mb-3 " data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning mb-3 fs-5" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Ajouter
                     </button>
@@ -135,10 +135,10 @@ if (isset($_POST['submit'])) {
                                         <?=$genreid ?>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary text-light " data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-outline-primary text-light " data-bs-toggle="modal"
                                             data-bs-target="#exampleModal2"><a href="update.php?updatedid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Modifier</a></button>
-                                        <button type="button" name="delete" class="btn btn-danger text-light"><a
+                                        <button type="button" name="delete" class="btn btn-outline-danger text-light"><a
                                                 href="delete.php?deletedid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Supprimer</a></button>
                                     </td>
