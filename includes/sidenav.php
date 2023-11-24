@@ -1,15 +1,5 @@
 <?php
 include '../connection/connect.php';
-if (isset($_POST['submit'])) {
-    $titre = $_POST['titre'];
-    $duree = $_POST['duree'];
-    $date = $_POST['date'];
-    $genre = $_POST['genre'];
-
-    $insert = "insert into `films` (titre, duree, date_trans, genre_id)
-    values ('$titre',$duree, '$date',$genre)";
-    $result = mysqli_query($connection, $insert);
-}
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +25,7 @@ if (isset($_POST['submit'])) {
 
 <body class=" bg-black">
 
-    <section class="container">
-        <div class="row flex-nowrap">
+  
             <!-- side nav -->
             <div class="sidebar col-auto col-md-3 min-vh-100 ">
                 <div class="side-content d-flex flex-column align-items-center  ">
@@ -48,16 +37,16 @@ if (isset($_POST['submit'])) {
                         <li><a href="../index.php" class="text-decoration-none text-warning px-4 py-2"><i
                                     class=" fa-solid fa-border-all"></i>
                                 <span class="d-none d-md-inline text-warning">Dashboard</span></a></li>
-                        <li><a href="film.php" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="../film/film.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-heart"></i> <span class="d-none d-md-inline">Films</span></a>
                         </li>
-                        <li><a href="../cast.php" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="../cast/cast.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-bookmark"></i>
                                 <span class="d-none d-md-inline ">Cast</span></a></li>
                         <li><a href="../genre/genre.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-compass"></i> <span
                                     class="d-none d-md-inline">Genre</span></a></li>
-                        <li><a href="index.html" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="../index.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-solid fa-arrow-right-from-bracket"></i> <span
                                     class="d-none d-md-inline">Log
                                     out</span></a></li>
@@ -65,9 +54,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            
-        </div>
-    </section>
+   
 
 </body>
 

@@ -1,15 +1,16 @@
 <?php
-include '../connection/connect.php';
-if (isset($_POST['submit'])) {
-    $titre = $_POST['titre'];
-    $duree = $_POST['duree'];
-    $date = $_POST['date'];
-    $genre = $_POST['genre'];
+include'../connection/connect.php';
 
-    $insert = "insert into `films` (titre, duree, date_trans, genre_id)
-    values ('$titre',$duree, '$date',$genre)";
-    $result = mysqli_query($connection, $insert);
+if(isset($_POST['submit'])){
+    $f_name= $_POST['f_name'];
+    $l_name= $_POST['l_name'];
+    $age=$_POST['age'];
+    $sql="insert into casts (nom, prenom, age) values ('$f_name', '$l_name', $age)";
+    $result = mysqli_query($connection, $sql);
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,123 +39,111 @@ if (isset($_POST['submit'])) {
     <section class="container">
         <div class="row flex-nowrap">
             <!-- side nav -->
-           <?php
+            <?php
            include"../includes/sidenav.php";
            ?>
 
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
-                <div class="d-flex justify-content-between">
-                    <h2 class=" text-warning ">Listes des films</h2>
+                  <!-- Button trigger modal -->
+                  <div class="d-flex justify-content-between">
+                    <h2 class=" text-warning ">Listes de cast</h2>
                     <button type="button" class="btn btn-warning mb-3 " data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Ajouter
                     </button>
                 </div>
+
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">ajouter un film</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">ajouter un genre</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form method="post">
                                     <div class="mb-3">
-                                        <label class="form-label">titre</label>
-                                        <input type="text" name="titre" class="form-control"
-                                            aria-describedby="title">
+                                        <label class="form-label">nom</label>
+                                        <input type="text" name="f_name" class="form-control"
+                                            aria-describedby="genre-name">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">durée</label>
-                                        <input type="text" name="duree" class="form-control"
-                                            aria-describedby="duree">
+                                        <label class="form-label">prenom</label>
+                                        <input type="text" name="l_name" class="form-control"
+                                            aria-describedby="genre-name">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">date date transmission</label>
-                                        <input type="date" name="date" class="form-control"
-                                            aria-describedby="date">
+                                        <label class="form-label">age</label>
+                                        <input type="text" name="age" class="form-control"
+                                            aria-describedby="genre-name">
                                     </div>
-                                    <label class="form-label">genre</label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="genre">
-                                        <?php
-                                        $sql = "select * from genres";
-                                        $result = mysqli_query($connection, $sql);
-                                        if ($result) {
-                                            if (mysqli_num_rows($result) > 0) {
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    ?>
-                                                    <option value="<?=$row['id']?>"><?=$row['nom']?></option>
-                                                <?php
-                                                }
-                                            }
-                                        }
-                                        ?>
-                                    </select>
                                     <button type="submit" name="submit" class="btn btn-warning">Submit</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <table class="table table-dark table-hover">
+            <table class="table table-dark table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">titre</th>
-                            <th scope="col">durée</th>
-                            <th scope="col">date_transmission</th>
-                            <th scope="col">genre</th>
+                            <th scope="col">id</th>
+                            <th scope="col">nom</th>
+                            <th scope="col">prenom</th>
+                            <th scope="col">age</th>
                             <th scope="col">operations</th>
                         </tr>
                     </thead>
+                    </thead>
                     <tbody>
                         <?php
-                        $sql = "select f.id, f.titre as title, f.duree as duree, f.date_trans as date, g.nom as genre from films f, genres g where f.genre_id=g.id";
+                        $sql = 'select * from `casts`';
                         $result = mysqli_query($connection, $sql);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
-                            $title = $row['title'];
-                            $duree = $row['duree'];
-                            $date = $row['date'];
-                            $genreid = $row['genre'];
-                            ?>
-<tr>
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $id = $row['id'];
+                                $f_name = $row['nom'];
+                                $l_name = $row['prenom'];
+                                $age = $row['age'];
+                                ?>
+                                <tr>
                                     <th scope="row">
-                                        <?=$title?>
+                                        <?php echo $id ?>
                                     </th>
                                     <td>
-                                        <?=$duree ?>
+                                        <?php echo $f_name ?>
                                     </td>
                                     <td>
-                                        <?=$date ?>
+                                        <?php echo $l_name ?>
                                     </td>
                                     <td>
-                                        <?=$genreid ?>
+                                        <?php echo $age ?>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary text-light " data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal2"><a href="update.php?updatedid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Modifier</a></button>
-                                        <button type="button" name="delete" class="btn btn-danger text-light"><a
+                                        <button type="button" name="delete" class="btn btn-danger "><a
                                                 href="delete.php?deletedid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Supprimer</a></button>
                                     </td>
                                 </tr>;
-
-                            <?php
+                            <?php }
                         }
                         ?>
                     </tbody>
-
                 </table>
+
+   
             </div>
 
         </div>
     </section>
-
+ 
 </body>
 
 </html>
