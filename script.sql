@@ -31,3 +31,4 @@ CREATE TABLE film_cast (
     FOREIGN KEY(film_id) REFERENCES films(id),
     FOREIGN KEY(cast_id) REFERENCES casts(id)
 );
+

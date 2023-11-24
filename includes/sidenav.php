@@ -1,7 +1,15 @@
 <?php
-include'connect.php';
+include '../connection/connect.php';
+if (isset($_POST['submit'])) {
+    $titre = $_POST['titre'];
+    $duree = $_POST['duree'];
+    $date = $_POST['date'];
+    $genre = $_POST['genre'];
 
-
+    $insert = "insert into `films` (titre, duree, date_trans, genre_id)
+    values ('$titre',$duree, '$date',$genre)";
+    $result = mysqli_query($connection, $insert);
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +22,7 @@ include'connect.php';
         shows
         that have left a mark on you">
     <title>dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,21 +41,20 @@ include'connect.php';
             <div class="sidebar col-auto col-md-3 min-vh-100 ">
                 <div class="side-content d-flex flex-column align-items-center  ">
                     <div class="profil d-flex flex-column align-items-center gap-3">
-                        <img src="img/user.png" alt="">
+                        <img src="../img/user.png" alt="">
                         <span class="d-none d-md-inline">user name</span>
                     </div>
                     <ul class="nav d-flex flex-column">
-                        <li><a href="dashboard.php" class="text-decoration-none text-warning px-4 py-2"><i
+                        <li><a href="../index.php" class="text-decoration-none text-warning px-4 py-2"><i
                                     class=" fa-solid fa-border-all"></i>
                                 <span class="d-none d-md-inline text-warning">Dashboard</span></a></li>
                         <li><a href="film.php" class="text-decoration-none text-white px-4 py-2"><i
-                                    class=" fa-regular fa-heart"></i> <span
-                                    class="d-none d-md-inline">Films</span></a>
+                                    class=" fa-regular fa-heart"></i> <span class="d-none d-md-inline">Films</span></a>
                         </li>
-                        <li><a href="to-watch.html" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="../cast.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-bookmark"></i>
                                 <span class="d-none d-md-inline ">Cast</span></a></li>
-                        <li><a href="genre.php" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="../genre/genre.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-compass"></i> <span
                                     class="d-none d-md-inline">Genre</span></a></li>
                         <li><a href="index.html" class="text-decoration-none text-white px-4 py-2"><i
@@ -58,18 +65,10 @@ include'connect.php';
                 </div>
             </div>
 
-            <!-- content -->
-            <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
-            <table class="table table-dark table-hover">
-
-            </table>
-
-   
-            </div>
-
+            
         </div>
     </section>
- 
+
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 <?php
-include 'connect.php';
-
+include '../connection/connect.php';
 $id = $_GET['updatedid'];
 $sql = "select * from genres where id=$id";
 $result = mysqli_query($connection, $sql);
