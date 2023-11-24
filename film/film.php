@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
                                             aria-describedby="title">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">durée</label>
+                                        <label class="form-label">durée(min)</label>
                                         <input type="text" name="duree" class="form-control"
                                             aria-describedby="duree">
                                     </div>
@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
                     <thead>
                         <tr>
                             <th scope="col">titre</th>
-                            <th scope="col">durée</th>
+                            <th scope="col">durée(min)</th>
                             <th scope="col">date_transmission</th>
                             <th scope="col">genre</th>
                             <th scope="col">operations</th>

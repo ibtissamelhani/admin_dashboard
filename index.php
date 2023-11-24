@@ -1,12 +1,8 @@
 <?php
-include'connect.php';
-
-
+include 'connection/connect.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,19 +26,36 @@ include'connect.php';
     <section class="container">
         <div class="row flex-nowrap">
             <!-- side nav -->
-            <?php
-           include"../includes/sidenav.php";
-           ?>
-
+            <div class="sidebar col-auto col-md-3 min-vh-100 ">
+                <div class="side-content d-flex flex-column align-items-center  ">
+                    <div class="profil d-flex flex-column align-items-center gap-3">
+                        <img src="img/user.png" alt="">
+                        <span class="d-none d-md-inline">user name</span>
+                    </div>
+                    <ul class="nav d-flex flex-column">
+                        <li><a href="index.php" class="text-decoration-none text-light px-4 py-2"><i
+                                    class=" fa-solid fa-border-all"></i>
+                                <span class="d-none d-md-inline">Dashboard</span></a></li>
+                        <li><a href="film/film.php" class="text-decoration-none text-white px-4 py-2"><i
+                                    class=" fa-regular fa-heart"></i> <span class="d-none d-md-inline">Films</span></a>
+                        </li>
+                        <li><a href="cast/cast.php" class="text-decoration-none text-white px-4 py-2"><i
+                                    class=" fa-regular fa-bookmark"></i>
+                                <span class="d-none d-md-inline ">Cast</span></a></li>
+                        <li><a href="genre/genre.php" class="text-decoration-none text-white px-4 py-2"><i
+                                    class=" fa-regular fa-compass"></i> <span
+                                    class="d-none d-md-inline">Genre</span></a></li>
+                        <li><a href="index.php" class="text-decoration-none text-white px-4 py-2"><i
+                                    class=" fa-solid fa-arrow-right-from-bracket"></i> <span
+                                    class="d-none d-md-inline">Log
+                                    out</span></a></li>
+                    </ul>
+                </div>
+            </div>
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
-            <table class="table table-dark table-hover">
-
-            </table>
-
-   
+            
             </div>
-
         </div>
     </section>
  

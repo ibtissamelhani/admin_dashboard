@@ -4,15 +4,21 @@ $id = $_GET['updatedid'];
 $sql = "select * from casts where id=$id";
 $result = mysqli_query($connection, $sql);
 $row = mysqli_fetch_assoc($result);
+$idd = $row['id'];
 $f_name = $row['nom'];
 $l_name = $row['prenom'];
 $age = $row['age'];
 
 if (isset($_POST['submit'])) {
-    $update = "update `casts` set nom ='$f_name', prenom='$l_name', age= $age where id=$id";
+    $idd = $_POST['id'];
+    $f_name = $_POST['nom'];
+    $l_name = $_POST['prenom'];
+    $age = $_POST['age'];
+    $update = "update `casts` set nom ='$f_name', prenom='$l_name', age= $age where id=$idd";
     $result = mysqli_query($connection, $update);
     if($result){
         header('location:cast.php');
+        
     }
 }
 ?>
@@ -50,6 +56,10 @@ if (isset($_POST['submit'])) {
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
             <form method="post">
+                                    <div class="mb-3">
+                                        <input type="hidden" name="id" class="form-control"
+                                            aria-describedby="genre-name" value=<?php echo $idd ?>>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">nom</label>
                                         <input type="text" name="f_name" class="form-control"

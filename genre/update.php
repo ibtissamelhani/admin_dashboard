@@ -1,14 +1,21 @@
 <?php
 include '../connection/connect.php';
-$id = $_GET['updatedid'];
-$sql = "select * from genres where id=$id";
-$result = mysqli_query($connection, $sql);
-$row = mysqli_fetch_assoc($result);
-$name = $row['nom'];
+
+    $id = $_GET['updateid'];
+    $sql = "select * from genres where id = $id ";
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['nom'];
+    $idd = $row['id'];
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $update = "update `genres` set nom='$name' where id=$id";
+    $idd = $_POST['idd'];
+    $update = "update `genres` set nom ='$name' where id=$idd";
     $result = mysqli_query($connection, $update);
+    if($result){
+        header('location:genre.php');
+    }
 }
 ?>
 
@@ -35,94 +42,24 @@ if (isset($_POST['submit'])) {
         <div class="row flex-nowrap">
             <!-- side nav -->
             <?php
-           include"../includes/sidenav.php";
-           ?>
+            include "../includes/sidenav.php";
+            ?>
 
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
-                <!-- Button trigger modal -->
-                <div class="d-flex justify-content-between">
-                    <h2 class=" text-warning ">Listes des genre</h2>
-                    <button type="button" class="btn btn-warning mb-3 " data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                        Ajouter
-                    </button>
-                </div>
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">ajouter un genre</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post">
-                                    <div class="mb-3">
-                                        <label class="form-label">Genre</label>
-                                        <input type="text" name="name" class="form-control"
-                                            aria-describedby="genre-name">
-                                    </div>
-                                    <button type="submit" name="submit" class="btn btn-warning">Submit</button>
-                                </form>
-                            </div>
-                        </div>
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Genre</label>
+                        <input type="hidden" name="idd" class="form-control" aria-describedby="genre-name" value=<?php echo $idd ?>>
+                        <input type="text" name="name" class="form-control" aria-describedby="genre-name" value=<?php echo $name ?>>
                     </div>
-                </div>
-                <table class="table table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">genre</th>
-                            <th scope="col">operations</th>
-                        </tr>
-                    </thead>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql = 'select * from `genres`';
-                        $result = mysqli_query($connection, $sql);
-                        if ($result) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $id = $row['id'];
-                                $name = $row['nom'];
-                                ?>
-                                <tr>
-                                    <th scope="row">
-                                        <?php echo $id ?>
-                                    </th>
-                                    <td>
-                                        <?php echo $name ?>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal2"><a href="update.php?updatedid=<?= $id ?>"
-                                                class="text-decoration-none text-light">Modifier</a></button>
-                                        <button type="button" name="delete" class="btn btn-danger text-light"><a
-                                                href="delete.php?deletedid=<?= $id ?>"
-                                                class="text-decoration-none">Supprimer</a></button>
-                                    </td>
-                                </tr>;
-                            <?php }
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                    <button type="submit" name="submit" class="btn btn-warning">save</button>
+                </form>
             </div>
         </div>
     </section>
 
 </body>
 
-    <form method="post m-5">
-        <div class="mb-3">
-            <label class="form-label">Genre</label>
-            <input type="text" name="name" class="form-control" aria-describedby="genre-name" value=<?php echo $name ?>>
-        </div>
-        <button type="submit" name="submit" class="btn btn-warning">save</button>
-    </form>
+
 </html>

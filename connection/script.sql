@@ -13,8 +13,10 @@ CREATE TABLE films (
     duree int,
     date_trans date,
     genre_id int,
-    FOREIGN KEY(genre_id) REFERENCES genres(id)
+    FOREIGN KEY(genre_id) REFERENCES genres(id) ON UPDATE CASCADE
 );
+
+
 
 CREATE TABLE casts (
     id int PRIMARY KEY AUTO_INCREMENT,
@@ -28,7 +30,7 @@ CREATE TABLE film_cast (
     role VARCHAR(20),
     film_id int,
     cast_id int,
-    FOREIGN KEY(film_id) REFERENCES films(id),
-    FOREIGN KEY(cast_id) REFERENCES casts(id)
+    FOREIGN KEY(film_id) REFERENCES films(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(cast_id) REFERENCES casts(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

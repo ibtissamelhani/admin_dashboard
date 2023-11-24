@@ -1,6 +1,4 @@
-<?php
-include '../connection/connect.php';
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +32,9 @@ include '../connection/connect.php';
                         <span class="d-none d-md-inline">user name</span>
                     </div>
                     <ul class="nav d-flex flex-column">
-                        <li><a href="../index.php" class="text-decoration-none text-warning px-4 py-2"><i
+                        <li><a href="../index.php" class="text-decoration-none text-light px-4 py-2"><i
                                     class=" fa-solid fa-border-all"></i>
-                                <span class="d-none d-md-inline text-warning">Dashboard</span></a></li>
+                                <span class="d-none d-md-inline">Dashboard</span></a></li>
                         <li><a href="../film/film.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-heart"></i> <span class="d-none d-md-inline">Films</span></a>
                         </li>

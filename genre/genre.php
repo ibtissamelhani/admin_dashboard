@@ -103,11 +103,11 @@ if (isset($_POST['submit'])) {
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal2"><a href="update.php?updatedid=<?= $id ?>"
+                                            data-bs-target="#exampleModal2"><a href="update.php?updateid=<?= $id ?>"
                                                 class="text-decoration-none text-light">Modifier</a></button>
-                                        <button type="button" name="delete" class="btn btn-danger text-light"><a
-                                                href="delete.php?deletedid=<?= $id ?>"
-                                                class="text-decoration-none">Supprimer</a></button>
+                                        <!-- <button type="button" name="delete" class="btn btn-danger text-light"><a
+                                                href="delete.php?deletedid="
+                                                class="text-decoration-none">Supprimer</a></button> -->
                                     </td>
                                 </tr>;
                             <?php }

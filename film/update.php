@@ -4,13 +4,19 @@ $id = $_GET['updatedid'];
 $sql = "select * from films where id=$id";
 $result = mysqli_query($connection, $sql);
 $row = mysqli_fetch_assoc($result);
+$idd = $row['id'];
 $titre = $row['titre'];
 $duree = $row['duree'];
 $date = $row['date_trans'];
 $genre = $row['genre_id'];
 
 if (isset($_POST['submit'])) {
-    $update = "update `films` set titre ='$titre', duree=$duree, date_trans='$date', genre_id=$genre  where id=$id";
+    $titre = $_POST['titre'];
+    $duree = $_POST['duree'];
+    $date = $_POST['date'];
+    $genre = $_POST['genre'];
+    $idd = $_POST['id'];
+    $update = "update `films` set titre ='$titre', duree=$duree, date_trans='$date', genre_id=$genre  where id=$idd";
     $result = mysqli_query($connection, $update);
     if($result){
         header('location:film.php');
@@ -50,6 +56,10 @@ if (isset($_POST['submit'])) {
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">               
                                 <form method="post">
+                                <div class="mb-3">
+                                        <input type="hidden" name="id" class="form-control"
+                                            aria-describedby="num" value=<?php echo $idd ?>>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">titre</label>
                                         <input type="text" name="titre" class="form-control"
