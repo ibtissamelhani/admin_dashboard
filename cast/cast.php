@@ -8,9 +8,6 @@ if(isset($_POST['submit'])){
     $sql="insert into casts (nom, prenom, age) values ('$f_name', '$l_name', $age)";
     $result = mysqli_query($connection, $sql);
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +20,7 @@ if(isset($_POST['submit'])){
         shows
         that have left a mark on you">
     <title>dashboard</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -137,13 +134,9 @@ if(isset($_POST['submit'])){
                         ?>
                     </tbody>
                 </table>
-
-   
             </div>
-
         </div>
     </section>
- 
 </body>
 
 </html>
