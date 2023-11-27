@@ -71,6 +71,16 @@
     background-color: #2c2b2bd6;
 }
 
+.card {
+    margin-bottom: 20px;
+}
+
+.count {
+    font-size: 24px;
+    color: #007bff; /* Blue color for count */
+}
+
+
 @media (max-width:700px) {
     .swiper-slide {
         font-size: 1em;

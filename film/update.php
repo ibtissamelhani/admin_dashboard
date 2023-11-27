@@ -82,9 +82,10 @@ if (isset($_POST['submit'])) {
                                         $result = mysqli_query($connection, $sql);
                                         if ($result) {
                                             if (mysqli_num_rows($result) > 0) {
-                                                while ($row = mysqli_fetch_array($result)) {
+                                                while ($rows = mysqli_fetch_array($result)) {
                                                     ?>
-                                                    <option value="<?=$row['id']?>"><?=$row['nom']?></option>
+                                                    <?php $isSelected = ($rows['id'] ==  $row['genre_id']) ? 'selected' : ''; ?> 
+                                                    <option value="<?=$rows['id']?>"  <?=$isSelected?>><?=$rows['nom']?></option>
                                                 <?php
                                                 }
                                             }
