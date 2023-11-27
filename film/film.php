@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
                             $date = $row['date'];
                             $genreid = $row['genre'];
                             ?>
-<tr class="text-center">
+                                <tr class="text-center">
                                     <th scope="row">
                                         <?=$title?>
                                     </th>
