@@ -47,13 +47,14 @@ if (isset($_POST['submit'])) {
 
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
-                <form method="post">
+                <form method="post" class="m-auto mt-5 col-md-9 p-5 bg-black border border-warning rounded">
                     <div class="mb-3">
-                        <label class="form-label">Genre</label>
+                        <label class="form-label text-light">Genre</label>
                         <input type="hidden" name="idd" class="form-control" aria-describedby="genre-name" value=<?php echo $idd ?>>
-                        <input type="text" name="name" class="form-control" aria-describedby="genre-name" value=<?php echo $name ?>>
+                        <input type="text" name="name" class="form-control bg-secondary text-black border-warning" aria-describedby="genre-name" value=<?php echo $name ?>>
                     </div>
                     <button type="submit" name="submit" class="btn btn-warning">save</button>
+                    <button type="" name="annuler" class="btn btn-primary"><a href="genre.php" class="text-dark text-decoration-none">annuler</a></button>
                 </form>
             </div>
         </div>

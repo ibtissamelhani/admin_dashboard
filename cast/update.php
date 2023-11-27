@@ -55,27 +55,28 @@ if (isset($_POST['submit'])) {
 
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
-            <form method="post">
+            <form method="post" class="m-auto mt-5 col-md-9 p-5 bg-black border border-warning rounded">
                                     <div class="mb-3">
                                         <input type="hidden" name="id" class="form-control"
                                             aria-describedby="genre-name" value=<?php echo $idd ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">nom</label>
-                                        <input type="text" name="f_name" class="form-control"
+                                        <label class="form-label text-light">nom</label>
+                                        <input type="text" name="f_name" class="form-control bg-secondary text-black border-warning"
                                             aria-describedby="genre-name" value=<?php echo $f_name ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">prenom</label>
-                                        <input type="text" name="l_name" class="form-control"
+                                        <label class="form-label text-light">prenom</label>
+                                        <input type="text" name="l_name" class="form-control bg-secondary text-black border-warning"
                                             aria-describedby="genre-name" value=<?php echo $l_name ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">age</label>
-                                        <input type="text" name="age" class="form-control"
+                                        <label class="form-label text-light">age</label>
+                                        <input type="text" name="age" class="form-control bg-secondary text-black border-warning"
                                             aria-describedby="genre-name" value=<?php echo $age ?>>
                                     </div>
                                     <button type="submit" name="submit" class="btn btn-warning">Submit</button>
+                                    <button type="" name="annuler" class="btn btn-primary"><a href="cast.php" class="text-dark text-decoration-none">annuler</a></button>
                                 </form>
             </div>
 

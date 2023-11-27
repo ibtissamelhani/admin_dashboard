@@ -38,13 +38,11 @@ include '../connection/connect.php';
                                     class=" fa-solid fa-border-all"></i>
                                 <span class="d-none d-md-inline">Dashboard</span></a></li>
                         <li><a href="../film/film.php" class="text-decoration-none text-white px-4 py-2"><i
-                                    class=" fa-regular fa-heart"></i> <span class="d-none d-md-inline">Films</span></a>
+                                    class=" fa-solid fa-film"></i> <span class="d-none d-md-inline">Films</span></a>
                         </li>
-                        <li><a href="../cast/cast.php" class="text-decoration-none text-white px-4 py-2"><i
-                                    class=" fa-regular fa-bookmark"></i>
+                        <li><a href="../cast/cast.php" class="text-decoration-none text-white px-4 py-2"><i class="fa-solid fa-people-group"></i>
                                 <span class="d-none d-md-inline ">Cast</span></a></li>
-                        <li><a href="../genre/genre.php" class="text-decoration-none text-white px-4 py-2"><i
-                                    class=" fa-regular fa-compass"></i> <span
+                        <li><a href="../genre/genre.php" class="text-decoration-none text-white px-4 py-2"><i class="fa-solid fa-layer-group"></i> <span
                                     class="d-none d-md-inline">Genre</span></a></li>
                         <li><a href="../index.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-solid fa-arrow-right-from-bracket"></i> <span

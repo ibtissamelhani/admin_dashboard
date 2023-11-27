@@ -55,28 +55,28 @@ if (isset($_POST['submit'])) {
 
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">               
-                                <form method="post">
-                                <div class="mb-3">
+                                <form method="post" class="m-auto mt-5 col-md-9 p-5 bg-black border border-warning rounded">
+                                    <div class="mb-3 ">
                                         <input type="hidden" name="id" class="form-control"
                                             aria-describedby="num" value=<?php echo $idd ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">titre</label>
-                                        <input type="text" name="titre" class="form-control"
+                                        <label class="form-label text-light">titre</label>
+                                        <input type="text" name="titre" class="form-control bg-secondary border-warning text-black"
                                             aria-describedby="title" value=<?php echo $titre ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">durée</label>
-                                        <input type="text" name="duree" class="form-control"
+                                        <label class="form-label text-light">durée</label>
+                                        <input type="text" name="duree" class="form-control  bg-secondary border-warning text-black"
                                             aria-describedby="duree" value=<?php echo $duree ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">date date transmission</label>
-                                        <input type="date" name="date" class="form-control"
+                                        <label class="form-label text-light">date date transmission</label>
+                                        <input type="date" name="date" class="form-control  bg-secondary border-warning text-black"
                                             aria-describedby="date" value=<?php echo $date ?>>
                                     </div>
-                                    <label class="form-label">genre</label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="genre" value=<?php echo $genre ?>>
+                                    <label class="form-label text-light">genre</label>
+                                    <select class="form-select mb-3  bg-secondary border-warning text-black" aria-label="Default select example" name="genre" value=<?php echo $genre ?>>
                                         <?php
                                         $sql = "select * from genres";
                                         $result = mysqli_query($connection, $sql);
@@ -92,6 +92,7 @@ if (isset($_POST['submit'])) {
                                         ?>
                                     </select>
                                     <button type="submit" name="submit" class="btn btn-warning">save</button>
+                                    <button type="annuler" name="annuler" class="btn btn-primary"><a href="film.php" class="text-dark text-decoration-none">anuller</a></button>
                                 </form>
             </div>
         </div>

@@ -45,13 +45,12 @@ if (isset($_POST['submit'])) {
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
                 <!-- Button trigger modal -->
                 <div class="d-flex justify-content-between">
-                    <h2 class=" text-warning ">Listes des genre</h2>
+                    <h2 class=" text-warning ">Listes des genres</h2>
                     <button type="button" class="btn btn-warning mb-3 fs-5" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Ajouter
                     </button>
                 </div>
-
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -82,7 +81,7 @@ if (isset($_POST['submit'])) {
                 </script>
                 <table class="table table-dark table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col">id</th>
                             <th scope="col">genre</th>
                             <th scope="col">operations</th>
@@ -98,7 +97,7 @@ if (isset($_POST['submit'])) {
                                 $id = $row['id'];
                                 $name = $row['nom'];
                                 ?>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="row">
                                         <?php echo $id ?>
                                     </th>
@@ -122,7 +121,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
-
+    <script src="../assets/script"></script>
 </body>
 
 </html>

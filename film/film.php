@@ -31,6 +31,9 @@ if (isset($_POST['submit'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+        <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
 <body class=" bg-black">
@@ -100,9 +103,9 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                 </div>
-                <table class="table table-dark table-hover">
+                <table  id="example" class="table table-dark table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col">titre</th>
                             <th scope="col">durée(min)</th>
                             <th scope="col">date_transmission</th>
@@ -121,7 +124,7 @@ if (isset($_POST['submit'])) {
                             $date = $row['date'];
                             $genreid = $row['genre'];
                             ?>
-<tr>
+<tr class="text-center">
                                     <th scope="row">
                                         <?=$title?>
                                     </th>
@@ -154,6 +157,7 @@ if (isset($_POST['submit'])) {
 
         </div>
     </section>
+    <script src="../assets/script.js"></script>
 
 </body>
 

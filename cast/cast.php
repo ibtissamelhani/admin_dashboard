@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
                 </div>
             <table class="table table-dark table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col">id</th>
                             <th scope="col">nom</th>
                             <th scope="col">prenom</th>
@@ -107,7 +107,7 @@ if(isset($_POST['submit'])){
                                 $l_name = $row['prenom'];
                                 $age = $row['age'];
                                 ?>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="row">
                                         <?php echo $id ?>
                                     </th>
