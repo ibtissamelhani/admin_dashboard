@@ -1,6 +1,6 @@
 
 // dougnut charts
-
+console.log("aaaa")
 const ctx = document.getElementById("myChart");
 new Chart(ctx, {
   type: "doughnut",

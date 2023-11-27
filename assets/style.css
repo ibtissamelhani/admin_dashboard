@@ -80,7 +80,6 @@
     color: #007bff; /* Blue color for count */
 }
 
-
 @media (max-width:700px) {
     .swiper-slide {
         font-size: 1em;
