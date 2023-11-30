@@ -1,5 +1,5 @@
 <?php
-include '../../connection/connect.php';
+include '../../dataBase/connect.php';
 
     $id = $_GET['updateid'];
     $sql = "select * from genres where id = $id ";

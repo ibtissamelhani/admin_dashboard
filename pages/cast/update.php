@@ -1,5 +1,5 @@
 <?php
-include '../../connection/connect.php';
+include '../../dataBase/connect.php';
 $id = $_GET['updatedid'];
 $sql = "select * from casts where id=$id";
 $result = mysqli_query($connection, $sql);

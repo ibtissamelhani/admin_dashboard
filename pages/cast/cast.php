@@ -1,5 +1,5 @@
 <?php
-include'../../connection/connect.php';
+include '../../dataBase/connect.php';
 
 if(isset($_POST['submit'])){
     $f_name= $_POST['f_name'];

@@ -1,5 +1,5 @@
 <?php
-include '../../connection/connect.php';
+include '../../dataBase/connect.php';
 if (isset($_POST['submit'])) {
     $titre = $_POST['titre'];
     $duree = $_POST['duree'];
