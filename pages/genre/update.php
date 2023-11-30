@@ -1,5 +1,5 @@
 <?php
-include '../connection/connect.php';
+include '../../connection/connect.php';
 
     $id = $_GET['updateid'];
     $sql = "select * from genres where id = $id ";
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
         <div class="row flex-nowrap">
             <!-- side nav -->
             <?php
-            include "../includes/sidenav.php";
+            include "../../includes/sidenav.php";
             ?>
 
             <!-- content -->

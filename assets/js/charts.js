@@ -1,6 +1,5 @@
 
 // dougnut charts
-console.log("aaaa")
 const ctx = document.getElementById("myChart");
 new Chart(ctx, {
   type: "doughnut",
@@ -146,17 +145,3 @@ new Chart(bar, {
   },
 });
 
-// swiper
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });

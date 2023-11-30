@@ -1,5 +1,5 @@
 <?php
-include '../connection/connect.php';
+include '../../connection/connect.php';
 if (isset($_POST['submit'])) {
     $titre = $_POST['titre'];
     $duree = $_POST['duree'];
@@ -22,7 +22,8 @@ if (isset($_POST['submit'])) {
         shows
         that have left a mark on you">
     <title>dashboard</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -42,7 +43,7 @@ if (isset($_POST['submit'])) {
         <div class="row flex-nowrap">
             <!-- side nav -->
            <?php
-           include"../includes/sidenav.php";
+           include "../../includes/sidenav.php";
            ?>
 
             <!-- content -->

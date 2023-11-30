@@ -1,5 +1,5 @@
 <?php
-include '../connection/connect.php';
+include '../../connection/connect.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -7,8 +7,6 @@ if (isset($_POST['submit'])) {
     values ('$name')";
     $result = mysqli_query($connection, $insert);
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +19,7 @@ if (isset($_POST['submit'])) {
         shows
         that have left a mark on you">
     <title>dashboard</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -38,7 +36,7 @@ if (isset($_POST['submit'])) {
         <div class="row flex-nowrap">
             <!-- side nav -->
             <?php
-           include"../includes/sidenav.php";
+           include "../../includes/sidenav.php";
            ?>
 
             <!-- content -->
@@ -75,10 +73,7 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                 </div>
-                <script>
-
-
-                </script>
+              
                 <table class="table table-dark table-hover">
                     <thead>
                         <tr class="text-center">
@@ -121,7 +116,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
-    <script src="../assets/script"></script>
+    <script src="../../assets/script"></script>
 </body>
 
 </html>
