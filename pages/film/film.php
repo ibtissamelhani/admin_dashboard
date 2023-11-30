@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
     $insert = "insert into `films` (titre, duree, date_trans, genre_id)
     values ('$titre',$duree, '$date',$genre)";
     $result = mysqli_query($connection, $insert);
+    
 }
 ?>
 

@@ -1,7 +1,4 @@
 
-<?php
-include '../../dataBase/connect.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +31,7 @@ include '../../dataBase/connect.php';
                         <span class="d-none d-md-inline">user name</span>
                     </div>
                     <ul class="nav d-flex flex-column">
-                        <li><a href="../../pages/dashbord/index.php" class="text-decoration-none text-light px-4 py-2"><i
+                        <li><a href="../../index.php" class="text-decoration-none text-light px-4 py-2"><i
                                     class=" fa-solid fa-border-all"></i>
                                 <span class="d-none d-md-inline">Dashboard</span></a></li>
                         <li><a href="../../pages/film/film.php" class="text-decoration-none text-white px-4 py-2"><i

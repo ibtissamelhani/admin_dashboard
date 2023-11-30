@@ -1,5 +1,5 @@
 <?php
-include '../../dataBase/connect.php';
+include __DIR__.'/dataBase/connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +25,31 @@ include '../../dataBase/connect.php';
 <body class=" bg-black">
     <section class="container">
         <div class="row flex-nowrap">
-            <!-- side nav -->
-            <?php
-           include "../../includes/sidenav.php";
-           ?>
+                 <!-- side nav -->
+                 <div class="sidebar col-auto col-md-3 min-vh-100 ">
+                <div class="side-content d-flex flex-column align-items-center  ">
+                    <div class="profil d-flex flex-column align-items-center gap-3">
+                        <img src="assets/img/user.png" alt="">
+                        <span class="d-none d-md-inline">user name</span>
+                    </div>
+                    <ul class="nav d-flex flex-column">
+                        <li><a href="index.php" class="text-decoration-none text-light px-4 py-2"><i
+                                    class=" fa-solid fa-border-all"></i>
+                                <span class="d-none d-md-inline">Dashboard</span></a></li>
+                        <li><a href="pages/film/film.php" class="text-decoration-none text-white px-4 py-2"><i
+                                    class=" fa-solid fa-film"></i> <span class="d-none d-md-inline">Films</span></a>
+                        </li>
+                        <li><a href="pages/cast/cast.php" class="text-decoration-none text-white px-4 py-2"><i class="fa-solid fa-people-group"></i>
+                                <span class="d-none d-md-inline ">Cast</span></a></li>
+                        <li><a href="pages/genre/genre.php" class="text-decoration-none text-white px-4 py-2"><i class="fa-solid fa-layer-group"></i> <span
+                                    class="d-none d-md-inline">Genre</span></a></li>
+                        <li><a href="index.php" class="text-decoration-none text-white px-4 py-2"><i
+                                    class=" fa-solid fa-arrow-right-from-bracket"></i> <span
+                                    class="d-none d-md-inline">Log
+                                    out</span></a></li>
+                    </ul>
+                </div>
+            </div>
 
             <!-- content -->
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
@@ -126,7 +147,7 @@ include '../../dataBase/connect.php';
     </section> 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script  src="../../assets/js/charts.js"></script>
+    <script  src="./assets/js/charts.js"></script>
    
 
 </body>
