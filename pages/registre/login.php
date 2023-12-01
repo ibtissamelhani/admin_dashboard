@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
             </div>
             <div class="sign-in-wrapper d-flex align-items-center gap-3">
                 <a href="#" class="fw-semibold text-white d-none d-md-block"> Watchlist</a>
-                <a href="./login.php" class="fw-bold text-white d-none d-md-block">signIn</a>
+                <a href="./sign-in.html" class="fw-bold text-white d-none d-md-block">signIn</a>
                 <select class="form-select d-none d-md-block" aria-label="Default select example">
                     <option selected>En</option>
                     <option value="2">Fr</option>
@@ -34,19 +34,14 @@
         </div>
     </nav>
 
-    <section class="sign-up">
+    <section class="sign-up sign-in">
         <div class="sign-up-container">
-            <h1>Create account</h1>
+            <h1>Login in</h1>
             <form id="form">
-            <label for="form-username">first Name</label>
-                <div class="form-controls">
-                    <input type="text" name="first_name" id="first-name" placeholder="Your First and last name" class="input-pd">
-                    <small>Error message</small>
-                </div>
-                <label for="form-username">last Name</label>
-                <div class="form-controls">
-                    <input type="text" name="last_name" id="last-name" placeholder="Your First and last name" class="input-pd">
-                    <small>Error message</small>
+                <label for="form-username" class="d-none">Your Name</label>
+                <div class="form-controls d-none">
+                    <input type="text" name="username" id="form-username" placeholder="Your First and last name" class="input-pd d-none">
+                    <small class="d-none">Error message</small>
                 </div>
 
                 <label for="form-email">Email</label>
@@ -54,24 +49,26 @@
                     <input type="text" name="email" id="form-email" placeholder="Your Email" class="input-pd">
                     <small>Error message</small>
                 </div>
-
+    
                 <label for="form-password">Password</label>
                 <div class="form-controls">
                     <input type="password" name="password" id="form-password" placeholder="at least 8 characters" class="input-pd">
-                    <p class="form-control-caracter">Passwords must be at least 8 characters</p>
+                    <p class="form-control-caracter d-none">Passwords must be at least 8 characters</p>
                     <small>Error message</small>
                 </div>
 
-                <label for="form-confirmed-password">Re-enter password</label>
-                <div class="form-controls">
+                <label for="form-confirmed-password" class="d-none">Re-enter password</label>
+                <div class="form-controls d-none">
                     <input type="password" name="username" id="form-confirmed-password" class="input-pd">
                     <small>Error message</small>
                 </div>
-                <button id="submit">Create your MovieMingle account</button>
+
+                <button id="submit">Sign in</button>
             </form>
-            <p class="signin-link">Already have an account? <a href="./login.php">Sign in</a></p>
+            <p class="signin-link">Don't have an account?<a href="./signup.php"> Sign up</a></p>
         </div>
     </section>
+
 
     <footer class="py-5 mt-5">
         <div class="container">
@@ -119,6 +116,5 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" ></script>
 </body>
 </html>
