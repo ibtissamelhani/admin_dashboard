@@ -1,3 +1,11 @@
+<?php
+include '../../dataBase/connect.php';
+include 'script.php';
+if(isset($_POST['submit'])){
+    login();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +45,8 @@
     <section class="sign-up sign-in">
         <div class="sign-up-container">
             <h1>Login in</h1>
-            <form id="form">
-                <label for="form-username" class="d-none">Your Name</label>
-                <div class="form-controls d-none">
-                    <input type="text" name="username" id="form-username" placeholder="Your First and last name" class="input-pd d-none">
-                    <small class="d-none">Error message</small>
-                </div>
+            <span class="text-danger text-centre"><?php if(isset($loginError)) {echo $loginError;}?></span>
+            <form id="form" method="post">
 
                 <label for="form-email">Email</label>
                 <div class="form-controls">
@@ -56,14 +60,7 @@
                     <p class="form-control-caracter d-none">Passwords must be at least 8 characters</p>
                     <small>Error message</small>
                 </div>
-
-                <label for="form-confirmed-password" class="d-none">Re-enter password</label>
-                <div class="form-controls d-none">
-                    <input type="password" name="username" id="form-confirmed-password" class="input-pd">
-                    <small>Error message</small>
-                </div>
-
-                <button id="submit">Sign in</button>
+                <button id="submit" name="submit">Sign in</button>
             </form>
             <p class="signin-link">Don't have an account?<a href="./signup.php"> Sign up</a></p>
         </div>

@@ -59,10 +59,13 @@ button{
 .form-controls{
     position: relative;
 }
-small{
+/* span{
+    margin: 20px;
+} */
+/* small{
     display: block;
     visibility: hidden;
-}
+} */
 .form-controls.error small{
     color: #e74c3c;
     visibility: visible;

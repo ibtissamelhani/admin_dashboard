@@ -1,3 +1,17 @@
+<?php
+include '../../dataBase/connect.php';
+include 'script.php';
+$fname_error='';
+$lname_error='';
+$email_error='';
+$password_error='';
+
+if(isset($_POST['submit'])){
+    registre();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,37 +51,38 @@
     <section class="sign-up">
         <div class="sign-up-container">
             <h1>Create account</h1>
-            <form id="form">
-            <label for="form-username">first Name</label>
-                <div class="form-controls">
-                    <input type="text" name="first_name" id="first-name" placeholder="Your First and last name" class="input-pd">
-                    <small>Error message</small>
-                </div>
-                <label for="form-username">last Name</label>
-                <div class="form-controls">
-                    <input type="text" name="last_name" id="last-name" placeholder="Your First and last name" class="input-pd">
-                    <small>Error message</small>
+            <form method="post">
+                <label>first Name</label>
+                <div class="form-controls mt-2">
+                    <input type="text" name="first_name"  placeholder="Your First name" class="input-pd" value='<?php if(isset($_POST['first_name'])){echo $_POST['first_name'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($fname_error)) { echo $fname_error; } ?></span>
                 </div>
 
-                <label for="form-email">Email</label>
-                <div class="form-controls">
-                    <input type="text" name="email" id="form-email" placeholder="Your Email" class="input-pd">
-                    <small>Error message</small>
+                <label >last Name</label>
+                <div class="form-controls mt-2">
+                    <input type="text" name="last_name"  placeholder="Your last name" class="input-pd" value='<?php if(isset($_POST['last_name'])){echo $_POST['last_name'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($lname_error)) { echo $lname_error; } ?></span>
                 </div>
 
-                <label for="form-password">Password</label>
-                <div class="form-controls">
-                    <input type="password" name="password" id="form-password" placeholder="at least 8 characters" class="input-pd">
-                    <p class="form-control-caracter">Passwords must be at least 8 characters</p>
-                    <small>Error message</small>
+                <label >Email</label>
+                <div class="form-controls mt-2">
+                    <input type="text" name="email" placeholder="Your Email" class="input-pd" value='<?php if(isset($_POST['email'])){echo $_POST['email'];}?>'>
+                   <span class="text-centre text-danger"><?php if(!empty($email_error)) { echo $email_error; } ?></span>
                 </div>
 
-                <label for="form-confirmed-password">Re-enter password</label>
-                <div class="form-controls">
-                    <input type="password" name="username" id="form-confirmed-password" class="input-pd">
-                    <small>Error message</small>
+                <label>Password</label>
+                <div class="form-controls mt-2">
+                    <input type="password" name="password"  placeholder="at least 8 characters" class="input-pd" value='<?php if(isset($_POST['password'])){echo $_POST['password'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($password_error)) { echo $password_error; } ?></span>
                 </div>
-                <button id="submit">Create your MovieMingle account</button>
+
+                <label >Re-enter password</label>
+                <div class="form-controls mt-2">
+                    <input type="password" name="repeatPassword"  class="input-pd" value='<?php if(isset($_POST['repeatPassword'])){echo $_POST['repeatPassword'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($password_error)) { echo $password_error; } ?></span>
+                </div>
+
+                <button name="submit" class="mt-3">Create your MovieMingle account</button>
             </form>
             <p class="signin-link">Already have an account? <a href="./login.php">Sign in</a></p>
         </div>
