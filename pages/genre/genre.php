@@ -3,7 +3,7 @@ include '../../dataBase/connect.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $insert = "insert into `genres` (nom)
+    $insert = "insert into `categories` (nom)
     values ('$name')";
     $result = mysqli_query($connection, $insert);
 }
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                     </thead>
                     <tbody>
                         <?php
-                        $sql = 'select * from `genres`';
+                        $sql = 'select * from `categories`';
                         $result = mysqli_query($connection, $sql);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {

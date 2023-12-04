@@ -1,7 +1,7 @@
 <?php
 include '../../dataBase/connect.php';
 $id = $_GET['updatedid'];
-$sql = "select * from films where id=$id";
+$sql = "select * from movies where id=$id";
 $result = mysqli_query($connection, $sql);
 $row = mysqli_fetch_assoc($result);
 $idd = $row['id'];
@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $genre = $_POST['genre'];
     $idd = $_POST['id'];
-    $update = "update `films` set titre ='$titre', duree=$duree, date_trans='$date', genre_id=$genre  where id=$idd";
+    $update = "update `movies` set titre ='$titre', duree=$duree, date_trans='$date', genre_id=$genre  where id=$idd";
     $result = mysqli_query($connection, $update);
     if($result){
         header('location:film.php');

@@ -1,10 +1,16 @@
 <?php
 include '../../dataBase/connect.php';
-include 'script.php';
+include '../../Controller/registre.php';
+$fname_error='';
+$lname_error='';
+$email_error='';
+$password_error='';
+
 if(isset($_POST['submit'])){
-    login();
+    registre();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +23,7 @@ if(isset($_POST['submit'])){
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
+   
 </head>
 <body>
 
@@ -32,7 +38,7 @@ if(isset($_POST['submit'])){
             </div>
             <div class="sign-in-wrapper d-flex align-items-center gap-3">
                 <a href="#" class="fw-semibold text-white d-none d-md-block"> Watchlist</a>
-                <a href="./sign-in.html" class="fw-bold text-white d-none d-md-block">signIn</a>
+                <a href="./login.php" class="fw-bold text-white d-none d-md-block">signIn</a>
                 <select class="form-select d-none d-md-block" aria-label="Default select example">
                     <option selected>En</option>
                     <option value="2">Fr</option>
@@ -42,30 +48,45 @@ if(isset($_POST['submit'])){
         </div>
     </nav>
 
-    <section class="sign-up sign-in">
+    <section class="sign-up">
         <div class="sign-up-container">
-            <h1>Login in</h1>
-            <span class="text-danger text-centre"><?php if(isset($loginError)) {echo $loginError;}?></span>
-            <form id="form" method="post">
+            <h1>Create account</h1>
+            <form method="post">
+                <label>first Name</label>
+                <div class="form-controls mt-2">
+                    <input type="text" name="first_name"  placeholder="Your First name" class="input-pd" value='<?php if(isset($_POST['first_name'])){echo $_POST['first_name'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($fname_error)) { echo $fname_error; } ?></span>
+                </div>
 
-                <label for="form-email">Email</label>
-                <div class="form-controls">
-                    <input type="text" name="email" id="form-email" placeholder="Your Email" class="input-pd">
-                    <small>Error message</small>
+                <label >last Name</label>
+                <div class="form-controls mt-2">
+                    <input type="text" name="last_name"  placeholder="Your last name" class="input-pd" value='<?php if(isset($_POST['last_name'])){echo $_POST['last_name'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($lname_error)) { echo $lname_error; } ?></span>
                 </div>
-    
-                <label for="form-password">Password</label>
-                <div class="form-controls">
-                    <input type="password" name="password" id="form-password" placeholder="at least 8 characters" class="input-pd">
-                    <p class="form-control-caracter d-none">Passwords must be at least 8 characters</p>
-                    <small>Error message</small>
+
+                <label >Email</label>
+                <div class="form-controls mt-2">
+                    <input type="text" name="email" placeholder="Your Email" class="input-pd" value='<?php if(isset($_POST['email'])){echo $_POST['email'];}?>'>
+                   <span class="text-centre text-danger"><?php if(!empty($email_error)) { echo $email_error; } ?></span>
                 </div>
-                <button id="submit" name="submit">Sign in</button>
+
+                <label>Password</label>
+                <div class="form-controls mt-2">
+                    <input type="password" name="password"  placeholder="at least 8 characters" class="input-pd" value='<?php if(isset($_POST['password'])){echo $_POST['password'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($password_error)) { echo $password_error; } ?></span>
+                </div>
+
+                <label >Re-enter password</label>
+                <div class="form-controls mt-2">
+                    <input type="password" name="repeatPassword"  class="input-pd" value='<?php if(isset($_POST['repeatPassword'])){echo $_POST['repeatPassword'];}?>'>
+                    <span class="text-centre text-danger"><?php if(!empty($password_error)) { echo $password_error; } ?></span>
+                </div>
+
+                <button name="submit" class="mt-3">Create your MovieMingle account</button>
             </form>
-            <p class="signin-link">Don't have an account?<a href="./signup.php"> Sign up</a></p>
+            <p class="signin-link">Already have an account? <a href="./login.php">Sign in</a></p>
         </div>
     </section>
-
 
     <footer class="py-5 mt-5">
         <div class="container">
@@ -113,5 +134,6 @@ if(isset($_POST['submit'])){
             </div>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" ></script>
 </body>
 </html>

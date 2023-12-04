@@ -13,6 +13,8 @@ CREATE TABLE users (
 alter Table users
 CHANGE isAdmin isAdmin BOOLEAN DEFAULT 0;
 
+INSERT into users (first_name, last_name,email,password, isAdmin) VALUES ('james','bond','admin@gmail.com','123456',1);
+
 CREATE TABLE categories (
     id int PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20),

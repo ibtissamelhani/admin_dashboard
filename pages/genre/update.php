@@ -2,7 +2,7 @@
 include '../../dataBase/connect.php';
 
     $id = $_GET['updateid'];
-    $sql = "select * from genres where id = $id ";
+    $sql = "select * from categories where id = $id ";
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
     $name = $row['nom'];
@@ -11,7 +11,7 @@ include '../../dataBase/connect.php';
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $idd = $_POST['idd'];
-    $update = "update `genres` set nom ='$name' where id=$idd";
+    $update = "update `categories` set nom ='$name' where id=$idd";
     $result = mysqli_query($connection, $update);
     if($result){
         header('location:genre.php');

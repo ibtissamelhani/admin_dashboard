@@ -1,15 +1,9 @@
 <?php
 include '../../dataBase/connect.php';
+include '../../Controller/movies.php';
+include '../../Model/adminScript.php';
 if (isset($_POST['submit'])) {
-    $titre = $_POST['titre'];
-    $duree = $_POST['duree'];
-    $date = $_POST['date'];
-    $genre = $_POST['genre'];
-
-    $insert = "insert into `films` (titre, duree, date_trans, genre_id)
-    values ('$titre',$duree, '$date',$genre)";
-    $result = mysqli_query($connection, $insert);
-    
+    add();
 }
 ?>
 
@@ -67,26 +61,31 @@ if (isset($_POST['submit'])) {
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="post">
+                                <form method="post" enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label class="form-label">titre</label>
-                                        <input type="text" name="titre" class="form-control"
+                                        <label class="form-label">title</label>
+                                        <input type="text" name="title" class="form-control"
                                             aria-describedby="title">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">durée(min)</label>
-                                        <input type="text" name="duree" class="form-control"
+                                        <label class="form-label">production_year</label>
+                                        <input type="text" name="year" class="form-control"
                                             aria-describedby="duree">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">date date transmission</label>
-                                        <input type="date" name="date" class="form-control"
+                                        <label class="form-label">country</label>
+                                        <input type="date" name="country" class="form-control"
                                             aria-describedby="date">
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">poster</label>
+                                        <input type="file" name="poster" class="form-control"
+                                        accept="image/*">
+                                    </div>
                                     <label class="form-label">genre</label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="genre">
+                                    <select class="form-select mb-3" aria-label="Default select example" name="category">
                                         <?php
-                                        $sql = "select * from genres";
+                                        $sql = getAllCategories();
                                         $result = mysqli_query($connection, $sql);
                                         if ($result) {
                                             if (mysqli_num_rows($result) > 0) {
@@ -108,8 +107,8 @@ if (isset($_POST['submit'])) {
                 <table  id="example" class="table table-dark table-hover">
                     <thead>
                         <tr class="text-center">
-                            <th scope="col">titre</th>
-                            <th scope="col">durée(min)</th>
+                            <th scope="col">title</th>
+                            <th scope="col">production_year</th>
                             <th scope="col">date_transmission</th>
                             <th scope="col">genre</th>
                             <th scope="col">operations</th>
@@ -117,7 +116,7 @@ if (isset($_POST['submit'])) {
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "select f.id, f.titre as title, f.duree as duree, f.date_trans as date, g.nom as genre from films f, genres g where f.genre_id=g.id";
+                        $sql = showMovies();
                         $result = mysqli_query($connection, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"];

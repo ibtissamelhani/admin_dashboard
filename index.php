@@ -59,7 +59,7 @@ include __DIR__.'/dataBase/connect.php';
                             <div class="card bg-danger">
                                 <div class="card-body text-center ">
                                     <?php
-                                    $sql = 'select * from films';
+                                    $sql = 'select * from movies';
                                     $result = mysqli_query($connection, $sql);
                                     if ($result) {
                                         $rowcount = mysqli_num_rows($result);
@@ -99,7 +99,7 @@ include __DIR__.'/dataBase/connect.php';
                             <div class="card bg-info ">
                                 <div class="card-body text-center">
                                     <?php
-                                    $sql = 'select * from genres';
+                                    $sql = 'select * from categories';
                                     $result = mysqli_query($connection, $sql);
                                     if ($result) {
                                         $rowcount = mysqli_num_rows($result);

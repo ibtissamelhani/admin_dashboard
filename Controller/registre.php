@@ -1,8 +1,7 @@
 <?php
 session_start();
 include '../../dataBase/connect.php';
-
-
+include '../../Model/authScript.php';
 
 // registration 
 function registre(){
@@ -10,8 +9,31 @@ function registre(){
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'],PASSWORD_BCRYPT) ;
+    $password = $_POST['password'];
     $repeatPassword = $_POST['repeatPassword'];
+
+    formValidation($first_name, $last_name,$email, $password, $repeatPassword);
+
+    if(empty($email_error) && empty($fname_error) && empty($lname_error) && empty($password_error)){
+        $password = password_hash($_POST['password'],PASSWORD_BCRYPT) ;
+
+        $result = addUser($first_name, $last_name,$email, $password) ;
+        
+        if(!$result){
+        echo "error: something went wrong";
+        }else{
+        header('location:../film/film.php');
+        exit();
+        }
+        mysqli_stmt_close($stmt);
+
+    }
+
+}
+
+// registration form validation 
+function formValidation($first_name, $last_name,$email, $password, $repeatPassword){
+    global $fname_error ,$lname_error, $email_error, $password_error;
 
     if(empty($first_name)){
         $fname_error = 'first name is required';
@@ -31,24 +53,6 @@ function registre(){
     elseif ($password != $repeatPassword) {
         $password_error ='password do not match';
     }
-  
-    if(empty($email_error) && empty($fname_error) && empty($lname_error) && empty($password_error)){
-
-        $query = "insert into users (first_name, last_name, email, password) values (?,?,?,?)" ;
-
-        $stmt = mysqli_prepare($connection, $query);
-        mysqli_stmt_bind_param($stmt,"ssss",$first_name,$last_name,$email,$password);
-        $result = mysqli_stmt_execute($stmt);
-        if(!$result){
-        echo "error: something went wrong";
-        }else{
-        header('location:../film/film.php');
-        exit();
-        }
-        mysqli_stmt_close($stmt);
-
-    }
-
 }
 
 // login
@@ -57,16 +61,16 @@ function login(){
      $email = $_POST['email'];
      $password = $_POST['password'];
      global $loginError ;
-     $query = "select * from users where email=?";
-     $stmt = mysqli_prepare($connection,$query);
-     mysqli_stmt_bind_param($stmt,"s",$email);
-     mysqli_stmt_execute($stmt);
-     $result = mysqli_stmt_get_result($stmt);
-     $row = mysqli_fetch_assoc($result);
+     $row = verifyEmail($email);
      if($row){
         if(password_verify($password, $row['password'])){
             $_SESSION['userId'] = $row['id'];
-            header('location:../film/film.php');
+            if($row['isAdmin']){
+                header('location:../../index.php');
+            }else{
+                header('location:../film/film.php');
+            }
+            
         }else{
             $loginError= "invalid email or password";
         }
