@@ -65,10 +65,15 @@ function login(){
      if($row){
         if(password_verify($password, $row['password'])){
             $_SESSION['userId'] = $row['id'];
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['isAdmin'] = $row['isAdmin'];
+            $_SESSION['loggedIn'] = true;
             if($row['isAdmin']){
                 header('location:../../index.php');
             }else{
-                header('location:../film/film.php');
+                header('location:../../home.php');
             }
             
         }else{

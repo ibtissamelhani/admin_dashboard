@@ -1,5 +1,10 @@
 <?php
 include __DIR__.'/dataBase/connect.php';
+session_start();
+if(!$_SESSION['isAdmin']){
+    echo "<script>alert(\"only admin!!! get out\")</script>";
+    header('location:pages/authentification/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

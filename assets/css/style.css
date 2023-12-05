@@ -1,4 +1,53 @@
+nav {
+    background-color: #121212;
+}
+p {
+    color: #fff;
+    /* font-size: clamp(.8rem, 5vw, .9rem); */
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+li {
+    list-style: none;
+}
 
+nav .burger-menu {
+    cursor: pointer;
+}
+nav .container .sub-menu {
+    background-color: #121212;
+    position: absolute;
+    top: -600%; left: 7%;
+    z-index: 999;
+    min-width: 300px;
+    transition: var(--main-transition);
+}
+nav .container .sub-menu.active {
+    top: 100%;
+}
+nav .container .sub-menu ul {
+    width: 100%;
+    padding: 0;
+}
+nav .container .sub-menu ul li {
+    text-align: center;
+    color: #fff;
+    background-color: #121212;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: var(--main-transition);
+}
+nav .container .sub-menu ul li a {
+    display: inline-block;
+    width: 100%;
+    padding-block: 18px;
+    font-weight: semibold;
+}
+nav .container .sub-menu ul li:hover {
+    background-color: #181818;
+}
 
 .side-content {
     position: sticky;
