@@ -36,6 +36,6 @@ CREATE TABLE casts (
     first_name varchar(20),
     last_name varchar (20),
     age int,
-    profile varchar(255)
 );
+
 

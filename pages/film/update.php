@@ -1,23 +1,27 @@
 <?php
 include '../../dataBase/connect.php';
+include '../../Controller/movies.php';
+
 $id = $_GET['updatedid'];
-$sql = "select * from movies where id=$id";
-$result = mysqli_query($connection, $sql);
-$row = mysqli_fetch_assoc($result);
+$row = getMovie($id);
 $idd = $row['id'];
-$titre = $row['titre'];
-$duree = $row['duree'];
-$date = $row['date_trans'];
-$genre = $row['genre_id'];
+$title = $row['title'];
+$year = $row['production_year'];
+$country = $row['country'];
+$poster = $row['poster'];
+$category = $row['category_id'];
+
 
 if (isset($_POST['submit'])) {
-    $titre = $_POST['titre'];
-    $duree = $_POST['duree'];
-    $date = $_POST['date'];
-    $genre = $_POST['genre'];
+    $title = $_POST['title'];
+    $year = $_POST['year'];
+    $country = $_POST['country'];
+    $category = $_POST['category'];
+    $poster = $_FILES['poster']['name'];
+    $tempfile = $_FILES['poster']['tmp_name'];
+    $folder = "../assets/img" . $poster;
     $idd = $_POST['id'];
-    $update = "update `movies` set titre ='$titre', duree=$duree, date_trans='$date', genre_id=$genre  where id=$idd";
-    $result = mysqli_query($connection, $update);
+    $result = update($idd, $title,$year,$country,$poster,$category);
     if($result){
         header('location:film.php');
     }
@@ -54,42 +58,47 @@ if (isset($_POST['submit'])) {
            ?>
 
             <!-- content -->
-            <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">               
-                                <form method="post" class="m-auto mt-5 col-md-9 p-5 bg-black border border-warning rounded">
+            <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
+                                <form method="post" class="m-auto mt-5 col-md-9 p-5 bg-black border border-warning rounded" enctype="multipart/form-data">
                                     <div class="mb-3 ">
                                         <input type="hidden" name="id" class="form-control"
                                             aria-describedby="num" value=<?php echo $idd ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-light">titre</label>
-                                        <input type="text" name="titre" class="form-control bg-secondary border-warning text-black"
-                                            aria-describedby="title" value=<?php echo $titre ?>>
+                                        <label class="form-label text-light">title</label>
+                                        <input type="text" name="title" class="form-control bg-secondary border-warning text-black"
+                                            aria-describedby="title" value=<?php echo $title ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-light">durée</label>
-                                        <input type="text" name="duree" class="form-control  bg-secondary border-warning text-black"
-                                            aria-describedby="duree" value=<?php echo $duree ?>>
+                                        <label class="form-label text-light">production_year</label>
+                                        <input type="text" name="year" class="form-control  bg-secondary border-warning text-black"
+                                            aria-describedby="duree" value=<?php echo $year ?>>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-light">date date transmission</label>
-                                        <input type="date" name="date" class="form-control  bg-secondary border-warning text-black"
-                                            aria-describedby="date" value=<?php echo $date ?>>
+                                        <label class="form-label text-light">country</label>
+                                        <input type="text" name="country" class="form-control"
+                                            aria-describedby="date" value=<?php echo $country ?>>
                                     </div>
-                                    <label class="form-label text-light">genre</label>
-                                    <select class="form-select mb-3  bg-secondary border-warning text-black" aria-label="Default select example" name="genre" value=<?php echo $genre ?>>
+                                    <div class="mb-3">
+
+                                    <div class="mb-3">
+                                        <label class="form-label text-light">poster</label>
+                                        <input type="file" name="poster" class="form-control"
+                                        accept="image/*" >
+                                        <?php if(!empty($poster)): ?>
+                                        <img src="../../assets/img/<?= $poster?>"  alt="Current Poster" class="mt-2" style="max-width: 200px;">
+                                        <?php endif; ?>
+                                    </div>
+                                    <label class="form-label text-light">category</label>
+                                    <select class="form-select mb-3" aria-label="Default select example" name="category">
                                         <?php
-                                        $sql = "select * from genres";
-                                        $result = mysqli_query($connection, $sql);
-                                        if ($result) {
-                                            if (mysqli_num_rows($result) > 0) {
-                                                while ($rows = mysqli_fetch_array($result)) {
-                                                    ?>
-                                                    <?php $isSelected = ($rows['id'] ==  $row['genre_id']) ? 'selected' : ''; ?> 
-                                                    <option value="<?=$rows['id']?>"  <?=$isSelected?>><?=$rows['nom']?></option>
+                                        $result = getAllCategories();
+                                                while ($row = mysqli_fetch_array($result)) {
+                                                 ?>
+                                                     <?php $isSelected = ($row['id'] ==  $row['category_id']) ? 'selected' : ''; ?> 
+                                                    <option value="<?=$row['id']?>" <?=$isSelected?>><?=$row['name']?></option>
                                                 <?php
                                                 }
-                                            }
-                                        }
                                         ?>
                                     </select>
                                     <button type="submit" name="submit" class="btn btn-warning">save</button>

@@ -1,12 +1,14 @@
 <?php
 include '../../dataBase/connect.php';
+include '../../Controller/cast.php';
 
 if(isset($_POST['submit'])){
-    $f_name= $_POST['f_name'];
-    $l_name= $_POST['l_name'];
-    $age=$_POST['age'];
-    $sql="insert into casts (nom, prenom, age) values ('$f_name', '$l_name', $age)";
-    $result = mysqli_query($connection, $sql);
+    // $f_name= $_POST['f_name'];
+    // $l_name= $_POST['l_name'];
+    // $age=$_POST['age'];
+    // $sql="insert into casts (first_name, last_name, age) values ('$f_name', '$l_name', $age)";
+    // $result = mysqli_query($connection, $sql);
+    add();
 }
 ?>
 
@@ -89,8 +91,8 @@ if(isset($_POST['submit'])){
                     <thead>
                         <tr class="text-center">
                             <th scope="col">id</th>
-                            <th scope="col">nom</th>
-                            <th scope="col">prenom</th>
+                            <th scope="col">first name</th>
+                            <th scope="col">last name</th>
                             <th scope="col">age</th>
                             <th scope="col">operations</th>
                         </tr>
@@ -98,35 +100,34 @@ if(isset($_POST['submit'])){
                     </thead>
                     <tbody>
                         <?php
-                        $sql = 'select * from `casts`';
-                        $result = mysqli_query($connection, $sql);
+                        $result = selectAll();
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $id = $row['id'];
-                                $f_name = $row['nom'];
-                                $l_name = $row['prenom'];
+                                $f_name = $row['first_name'];
+                                $l_name = $row['last_name'];
                                 $age = $row['age'];
                                 ?>
                                 <tr class="text-center">
                                     <th scope="row">
-                                        <?php echo $id ?>
+                                        <?= $id ?>
                                     </th>
                                     <td>
-                                        <?php echo $f_name ?>
+                                        <?= $f_name ?>
                                     </td>
                                     <td>
-                                        <?php echo $l_name ?>
+                                        <?= $l_name ?>
                                     </td>
                                     <td>
-                                        <?php echo $age ?>
+                                        <?= $age ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal2"><a href="update.php?updatedid=<?= $id ?>"
-                                                class="text-decoration-none text-light">Modifier</a></button>
+                                                class="text-decoration-none text-light">edit</a></button>
                                         <button type="button" name="delete" class="btn btn-outline-danger "><a
                                                 href="delete.php?deletedid=<?= $id ?>"
-                                                class="text-decoration-none text-light">Supprimer</a></button>
+                                                class="text-decoration-none text-light">delete</a></button>
                                     </td>
                                 </tr>;
                             <?php }

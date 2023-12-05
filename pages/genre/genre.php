@@ -1,11 +1,11 @@
 <?php
 include '../../dataBase/connect.php';
+include '../../Controller/category.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $insert = "insert into `categories` (nom)
-    values ('$name')";
-    $result = mysqli_query($connection, $insert);
+    $description = $_POST['description'];
+    add($name, $description);
 }
 ?>
 
@@ -63,11 +63,15 @@ if (isset($_POST['submit'])) {
                             <div class="modal-body">
                                 <form method="post">
                                     <div class="mb-3">
-                                        <label class="form-label">Genre</label>
+                                        <label class="form-label">category</label>
                                         <input type="text" name="name" class="form-control"
                                             aria-describedby="genre-name">
                                     </div>
-                                    <button type="submit" name="submit" class="btn btn-warning">Submit</button>
+                                    <div class="form-floating">
+                                        <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">
+                                        <label for="floatingTextarea2">description</label>
+                                    </div>
+                                    <button type="submit" name="submit" class="btn btn-warning mt-3">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -78,27 +82,28 @@ if (isset($_POST['submit'])) {
                     <thead>
                         <tr class="text-center">
                             <th scope="col">id</th>
-                            <th scope="col">genre</th>
-                            <th scope="col">operations</th>
+                            <th scope="col">category</th>
+                            <th scope="col">action</th>
                         </tr>
                     </thead>
                     </thead>
                     <tbody>
                         <?php
-                        $sql = 'select * from `categories`';
-                        $result = mysqli_query($connection, $sql);
-                        if ($result) {
-                            while ($row = mysqli_fetch_assoc($result)) {
+                        $result=getAll();
+                        if($result){
+                        
+                            while($row=mysqli_fetch_assoc($result)) {
                                 $id = $row['id'];
-                                $name = $row['nom'];
+                                $name = $row['name'];
                                 ?>
                                 <tr class="text-center">
                                     <th scope="row">
-                                        <?php echo $id ?>
+                                        <?= $id ?>
                                     </th>
                                     <td>
-                                        <?php echo $name ?>
+                                        <?= $name ?>
                                     </td>
+                                   
                                     <td>
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal2"><a href="update.php?updateid=<?= $id ?>"

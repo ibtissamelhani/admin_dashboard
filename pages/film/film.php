@@ -1,7 +1,6 @@
 <?php
 include '../../dataBase/connect.php';
 include '../../Controller/movies.php';
-include '../../Model/adminScript.php';
 if (isset($_POST['submit'])) {
     add();
 }
@@ -18,7 +17,7 @@ if (isset($_POST['submit'])) {
         that have left a mark on you">
     <title>dashboard</title>
     <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,9 +26,6 @@ if (isset($_POST['submit'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
-        <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
 <body class=" bg-black">
@@ -74,7 +70,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">country</label>
-                                        <input type="date" name="country" class="form-control"
+                                        <input type="text" name="country" class="form-control"
                                             aria-describedby="date">
                                     </div>
                                     <div class="mb-3">
@@ -82,20 +78,15 @@ if (isset($_POST['submit'])) {
                                         <input type="file" name="poster" class="form-control"
                                         accept="image/*">
                                     </div>
-                                    <label class="form-label">genre</label>
+                                    <label class="form-label">category</label>
                                     <select class="form-select mb-3" aria-label="Default select example" name="category">
                                         <?php
-                                        $sql = getAllCategories();
-                                        $result = mysqli_query($connection, $sql);
-                                        if ($result) {
-                                            if (mysqli_num_rows($result) > 0) {
+                                        $result = getAllCategories();
                                                 while ($row = mysqli_fetch_array($result)) {
-                                                    ?>
-                                                    <option value="<?=$row['id']?>"><?=$row['nom']?></option>
+                                                 ?>
+                                                    <option value="<?= $row['id']?>"><?= $row['name']?></option>
                                                 <?php
                                                 }
-                                            }
-                                        }
                                         ?>
                                     </select>
                                     <button type="submit" name="submit" class="btn btn-warning">Submit</button>
@@ -109,34 +100,38 @@ if (isset($_POST['submit'])) {
                         <tr class="text-center">
                             <th scope="col">title</th>
                             <th scope="col">production_year</th>
-                            <th scope="col">date_transmission</th>
-                            <th scope="col">genre</th>
-                            <th scope="col">operations</th>
+                            <th scope="col">country</th>
+                            <th scope="col">category</th>
+                            <th scope="col">poster</th>
+                            <th scope="col">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $sql = showMovies();
-                        $result = mysqli_query($connection, $sql);
+                        $result = showallMovies();
                         while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"];
                             $title = $row['title'];
-                            $duree = $row['duree'];
-                            $date = $row['date'];
-                            $genreid = $row['genre'];
+                            $year = $row['year'];
+                            $country = $row['country'];
+                            $category = $row['category'];
+                            $poster = $row['poster'];
                             ?>
                                 <tr class="text-center">
                                     <th scope="row">
-                                        <?=$title?>
+                                        <?=$title ?>
                                     </th>
                                     <td>
-                                        <?=$duree ?>
+                                        <?=$year ?>
                                     </td>
                                     <td>
-                                        <?=$date ?>
+                                        <?=$country ?>
                                     </td>
                                     <td>
-                                        <?=$genreid ?>
+                                        <?=$category ?>
+                                    </td>
+                                    <td>
+                                        <?= $poster ?>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-primary text-light " data-bs-toggle="modal"
