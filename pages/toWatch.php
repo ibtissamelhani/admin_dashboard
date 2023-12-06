@@ -43,10 +43,10 @@ if( $_SESSION['loggedIn'] != 1){
 
             <div class="sub-menu d-flex w-25   justify-content-center">
                 <ul class="">
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./contact.html">contact</a></li>
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./dashboard.html">home</a></li>
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./about.html">about</a></li>
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./about.html">about us</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="#">contact</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="../home.php">home</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="#">about</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="#">about us</a></li>
       
                 </ul>
             </div>
@@ -79,13 +79,13 @@ if( $_SESSION['loggedIn'] != 1){
                         <li><a href="dashboard.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-solid fa-border-all"></i>
                                 <span class="d-none d-md-inline">Dashboard</span></a></li>
-                        <li><a href="favorite.php" class="text-decoration-none text-warning px-4 py-2"><i
+                        <li><a href="favorite.php" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-heart"></i> <span
-                                    class="d-none d-md-inline text-warning">Favorite</span></a>
+                                    class="d-none d-md-inline text-white">Favorite</span></a>
                         </li>
-                        <li><a href="toWatch.php" class="text-decoration-none text-white px-4 py-2"><i
+                        <li><a href="toWatch.php" class="text-decoration-none text-warning px-4 py-2"><i
                                     class=" fa-regular fa-bookmark"></i>
-                                <span class="d-none d-md-inline ">To-watch</span></a></li>
+                                <span class="d-none d-md-inline text-warning">To-watch</span></a></li>
                         <li><a href="watch-history.html" class="text-decoration-none text-white px-4 py-2"><i
                                     class=" fa-regular fa-compass"></i> <span
                                     class="d-none d-md-inline">Watch-history</span></a></li>

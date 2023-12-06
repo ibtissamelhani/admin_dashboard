@@ -43,10 +43,10 @@ if( $_SESSION['loggedIn'] != 1){
 
             <div class="sub-menu d-flex w-25   justify-content-center">
                 <ul class="">
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./contact.html">contact</a></li>
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./dashboard.html">home</a></li>
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./about.html">about</a></li>
-                    <li><a class="text-capitalize text-decoration-none text-white" href="./about.html">about us</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="#">contact</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="../home.php">home</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="#">about</a></li>
+                    <li><a class="text-capitalize text-decoration-none text-white" href="#">about us</a></li>
       
                 </ul>
             </div>

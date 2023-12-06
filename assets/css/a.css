@@ -1,0 +1,25 @@
+.like label {
+    color: #f5f7f9;
+    cursor: pointer;
+    font-size: 20px;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.like label:hover{
+    color: grey;
+}
+
+.like input[type="checkbox"] {
+    display: none;
+}
+.like input[type="checkbox"]:checked + label {
+    color: #e2264d;
+}
+
+
+
+
+  
+  
+  

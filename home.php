@@ -1,12 +1,13 @@
 <?php
 include __DIR__.'/dataBase/connect.php';
+include __DIR__.'/Model/userScript.php';
+
 session_start();
 if( $_SESSION['loggedIn'] != 1){
     echo "<script>alert(\"la variable est nulle\")</script>";
     header('location: pages/authentification/login.php');
-}else {
-    echo "<script>alert(\"hi\")</script>";
 }
+$user_id = $_SESSION['userId'];
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +23,7 @@ if( $_SESSION['loggedIn'] != 1){
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/a.css">
 </head>
 
 <body>
@@ -448,13 +450,35 @@ if( $_SESSION['loggedIn'] != 1){
                 <p class="opacity-50">
                     MovieMingle helps you select the perfect next show or movie to watch.
                 </p>
+            
             </div>
-            <a href="#"
-                class="d-inline-block rounded fw-bold py-2 px-5 text-white border border-2 border-light fs-7">Sign in
-                for to MovieMingle</a>
-            <a href="#"
-                class="d-inline-block rounded fw-bold py-2 px-5 text-white border border-2 border-light ms-4 fs-7">Sign
-                in for to MovieMingle</a>
+            <div class="d-flex justify-content-center flex-wrap">
+                <?php 
+                $query = getMovies();
+                    $result = mysqli_query($connection, $query);
+                    // $row = mysqli_fetch_assoc($result);
+                    while($row = mysqli_fetch_assoc($result)){
+                        $title = $row['title'];
+                        $poster = $row['poster'];
+                        $id = $row['id'];
+                    ?>
+                <div class="d-flex flex-column col-3">
+                    <img src="assets/img/<?= $poster?>" alt="Current Poster" class="mt-2" style="max-width: 200px;">
+                    <div class="d-flex gap-5  align-items-center ">
+                    <span class="text-white mt-3"><?= $title?></span>
+                    <div class="like">
+                        <input id="heart-<?= $id?>" type="checkbox" />
+                        <label  for="heart-<?= $id?>"><a href="controller/favorite.php?movieId=<?= $id?>&userId=<?= $user_id ?>">❤</a></label>
+                    </div>
+                    
+                    </div>
+                   
+                    
+                </div>
+                <?php
+                }
+                ?>
+            </div>
         </div>
     </section>
 

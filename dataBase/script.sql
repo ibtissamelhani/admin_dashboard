@@ -35,7 +35,15 @@ CREATE TABLE casts (
     id int PRIMARY KEY AUTO_INCREMENT,
     first_name varchar(20),
     last_name varchar (20),
-    age int,
+    age int
 );
 
 
+CREATE TABLE stat(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    stat varchar(20),
+    user_id int,
+    movie_id int,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
