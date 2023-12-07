@@ -438,8 +438,8 @@ $user_id = $_SESSION['userId'];
                 <?php 
                 $query = getMovies();
                     $result = mysqli_query($connection, $query);
-                    $favoriteArr = favorites();
-                    $towatchArr = toWatch();
+                    $favoriteArr = favorites($user_id);
+                    $towatchArr = toWatch($user_id);
                     while($row = mysqli_fetch_assoc($result)){
                         $title = $row['title'];
                         $poster = $row['poster'];

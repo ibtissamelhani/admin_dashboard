@@ -5,25 +5,25 @@ include __DIR__ . '/../Model/userScript.php';
 $favArray = array();
 $watArray = array();
 
-function getFavorites(){
+function getFavorites($user_id){
     global $connection;
-    $query = getAllFavorite();
+    $query = getUserFavorite($user_id);
     $result = mysqli_query($connection,$query);
     return $result;
 }
 
 
-function getToWatch(){
+function getToWatch($user_id){
     global $connection;
-    $query = getAllToWatch();
+    $query = getUserToWatch($user_id);
     $result = mysqli_query($connection,$query);
     return $result;
 }
 
- function favorites(){
+ function favorites($user_id){
     $favArray = array();
     global $connection;
-    $query = getAllFavorite();
+    $query = getUserFavorite($user_id);
     $result = mysqli_query($connection,$query);
     while($row = mysqli_fetch_assoc($result)){
         array_push($favArray,$row['movie_id']);
@@ -32,10 +32,10 @@ function getToWatch(){
     
  }
 
- function toWatch(){
+ function toWatch($user_id){
     $watArray = array();
     global $connection;
-    $query = getAllToWatch();
+    $query = getUserToWatch($user_id);
     $result = mysqli_query($connection,$query);
     while($row = mysqli_fetch_assoc($result)){
         array_push($watArray,$row['movie_id']);

@@ -2,6 +2,7 @@
 include '../dataBase/connect.php';
 include '../controller/user.php';
 session_start();
+
 if( $_SESSION['loggedIn'] != 1){
     echo "<script>alert(\"la variable est nulle\")</script>";
     header('location: pages/authentification/login.php');
@@ -106,7 +107,8 @@ if( $_SESSION['loggedIn'] != 1){
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100 ">
                 <div class="d-flex justify-content-arround flex-wrap">
                 <?php
-                $result = getFavorites();
+               
+                $result = getFavorites($_SESSION['userId']);
                 while($row = mysqli_fetch_assoc($result)){
                     $title = $row['title'];
                     $poster= $row['poster'];

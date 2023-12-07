@@ -15,9 +15,9 @@ function registre(){
     formValidation($first_name, $last_name,$email, $password, $repeatPassword);
 
     if(empty($email_error) && empty($fname_error) && empty($lname_error) && empty($password_error)){
-        $password = password_hash($_POST['password'],PASSWORD_BCRYPT) ;
+        $password = password_hash($_POST['password'],PASSWORD_BCRYPT);
 
-        $result = addUser($first_name, $last_name,$email, $password) ;
+        $result = addUser($first_name, $last_name,$email, $password);
         
         if(!$result){
         echo "error: something went wrong";

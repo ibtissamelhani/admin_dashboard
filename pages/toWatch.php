@@ -106,7 +106,7 @@ if( $_SESSION['loggedIn'] != 1){
             <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
                 <div class="d-flex justify-content-arround flex-wrap">
                     <?php
-                        $result = getToWatch();
+                        $result = getToWatch($_SESSION['userId']);
                         while($row = mysqli_fetch_assoc($result)){
                             $title = $row['title'];
                             $poster= $row['poster'];
