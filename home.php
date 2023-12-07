@@ -1,6 +1,7 @@
 <?php
 include __DIR__.'/dataBase/connect.php';
-include __DIR__.'/Model/userScript.php';
+// include __DIR__.'/Model/userScript.php';
+include __DIR__.'/controller/user.php';
 
 session_start();
 if( $_SESSION['loggedIn'] != 1){
@@ -397,9 +398,9 @@ $user_id = $_SESSION['userId'];
                             </div>
                             <div class="w-33">
                                 <div class="d-flex bg-light">
-                                    <img class="w-33 flex-grow-1" src="./imgs/movie-1.png" alt="img">
-                                    <img class="w-33 flex-grow-1 mx-1" src="./imgs/movie-2.png" alt="img">
-                                    <img class="w-33 flex-grow-1" src="./imgs/movie-3.png" alt="img">
+                                    <img class="w-33 flex-grow-1" src="assets/img/movie-1.png" alt="img">
+                                    <img class="w-33 flex-grow-1 mx-1" src="assets/img/movie-2.png" alt="img">
+                                    <img class="w-33 flex-grow-1" src="assets/img/movie-3.png" alt="img">
                                 </div>
                                 <p class="m-1 mt-2">Best 3 of picks in October</p>
                             </div>
@@ -421,25 +422,6 @@ $user_id = $_SESSION['userId'];
         </div>
     </section>
 
-    <section class="sign-in py-5">
-        <div class="main-heading container">
-            <h2>
-                From your Watchlist
-                <i class="fa-solid fa-angle-right"></i>
-            </h2>
-        </div>
-        <div class="container text-center text-white mt-5">
-            <i class="fa-regular fa-circle-xmark rotate fs-1 mb-4"></i>
-            <h2 class="fs-6 fw-bolder">
-                Sign in to access your Watchlist
-            </h2>
-            <h5 class="mb-4 fs-6 opacity-75">
-                Save shows and movies to keep track of what you want to watch.
-            </h5>
-            <a href="#" class="d-inline-block rounded fw-bold py-2 px-5 fs-7">Sign in for to MovieMingle</a>
-        </div>
-    </section>
-
     <section class="more-to-watch py-5">
         <div class="container">
             <div class="main-heading">
@@ -452,25 +434,29 @@ $user_id = $_SESSION['userId'];
                 </p>
             
             </div>
-            <div class="d-flex justify-content-center flex-wrap">
+            <div class="d-flex justify-content-center justify-content-arround flex-wrap">
                 <?php 
                 $query = getMovies();
                     $result = mysqli_query($connection, $query);
-                    // $row = mysqli_fetch_assoc($result);
+                    $favoriteArr = favorites();
+                    $towatchArr = toWatch();
                     while($row = mysqli_fetch_assoc($result)){
                         $title = $row['title'];
                         $poster = $row['poster'];
                         $id = $row['id'];
                     ?>
                 <div class="d-flex flex-column col-3">
-                    <img src="assets/img/<?= $poster?>" alt="Current Poster" class="mt-2" style="max-width: 200px;">
-                    <div class="d-flex gap-5  align-items-center ">
-                    <span class="text-white mt-3"><?= $title?></span>
-                    <div class="like">
-                        <input id="heart-<?= $id?>" type="checkbox" />
-                        <label  for="heart-<?= $id?>"><a href="controller/favorite.php?movieId=<?= $id?>&userId=<?= $user_id ?>">❤</a></label>
-                    </div>
-                    
+                    <img src="assets/img/<?= $poster?>" alt="Current Poster" class="mt-2 " style="max-width: 200px;">
+                    <div class="d-flex gap-4  align-items-center mt-3">
+                        <span class="text-white"><?= $title?></span>
+                        <div class="like">
+                            <input id="heart-<?= $id?>" type="checkbox" <?php if(in_array($id, $favoriteArr)){ echo 'checked'; } ?> />
+                            <label  for="heart-<?= $id?>"><a href="controller/favorite.php?movieId=<?= $id?>&userId=<?= $user_id ?>">❤</a></label>
+                        </div>
+                        <div class="book">
+                            <input type="checkbox" id="bookmark-<?= $id?>" <?php if(in_array($id, $towatchArr)){ echo 'checked'; } ?> />
+                            <label for="bookmark-<?= $id?>"><a href="controller/towatch.php?movieId=<?= $id?>&userId=<?= $user_id ?>"><i class="fa-solid fa-bookmark"></i></a></label>
+                        </div>
                     </div>
                    
                     
@@ -571,7 +557,7 @@ $user_id = $_SESSION['userId'];
                         <div class="card">
                             <div class="row g-0 ">
                                 <div class="col-md-5">
-                                    <img src="./imgs/featur-9.png" class="img-fluid rounded-start h-100" alt="img">
+                                    <img src="assets/img/featur-9.png" class="img-fluid rounded-start h-100" alt="img">
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body">
@@ -588,7 +574,7 @@ $user_id = $_SESSION['userId'];
                         <div class="card d-none d-lg-block">
                             <div class="row g-0">
                                 <div class="col-md-5">
-                                    <img src="./imgs/featur-11.png" class="img-fluid rounded-start" alt="img">
+                                    <img src="assets/img/featur-11.png" class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body">
@@ -747,174 +733,6 @@ $user_id = $_SESSION['userId'];
             <span class="rounded-4 py-1 px-3 border d-inline-block">movie news</span>
             <span class="rounded-4 py-1 px-3 border d-inline-block">TV news</span>
             <span class="rounded-4 py-1 px-3 border d-inline-block">celebrity news</span>
-        </div>
-    </section>
-
-    <section class="coming-soon py-5">
-        <div class="container">
-            <div class="main-heading">
-                <h2>
-                    Coming soon to theaters
-                    <i class="fa-solid fa-angle-right"></i>
-                </h2>
-                <p class="opacity-50">
-                    Our Halloween guide has treats for all.
-                </p>
-            </div>
-            <div id="coming-soon" class="carousel slide mt-4">
-                <div class="carousel-inner container">
-                    <!-- 1 -->
-                    <div class="carousel-item active">
-                        <div class="d-flex g-2">
-                            <!-- 1-1 -->
-                            <div class="w-33 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-6.jpg" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">8 Dec</p>
-                                        <p class="m-0">Breaking Bad</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1-2 -->
-                            <div class="w-33 mx-3 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-10.jpg" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">12 Dec</p>
-                                        <p class="m-0">King Kong</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1-3 -->
-                            <div class="w-33 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-3-bg.png" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">25 Dec</p>
-                                        <p class="m-0">Past Lives</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- 2 -->
-                    <div class="carousel-item">
-                        <div class="d-flex g-2">
-                            <!-- 1-1 -->
-                            <div class="w-33 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-6.jpg" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">8 Dec</p>
-                                        <p class="m-0">Breaking Bad</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1-2 -->
-                            <div class="w-33 mx-3 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img//movie-10.jpg" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">12 Dec</p>
-                                        <p class="m-0">King Kong</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1-3 -->
-                            <div class="w-33 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-3-bg.png" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">25 Dec</p>
-                                        <p class="m-0">Past Lives</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- 3 -->
-                    <div class="carousel-item">
-                        <div class="d-flex g-2">
-                            <!-- 1-1 -->
-                            <div class="w-33 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-6.jpg" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">8 Dec</p>
-                                        <p class="m-0">Breaking Bad</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1-2 -->
-                            <div class="w-33 mx-3 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-10.jpg" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">12 Dec</p>
-                                        <p class="m-0">King Kong</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1-3 -->
-                            <div class="w-33 text-white">
-                                <div class="d-flex gap-1 bg-light">
-                                    <img class="w-33 flex-grow-1" src="assets/img/movie-3-bg.png" alt="img">
-                                </div>
-                                <div class="text bg-card d-flex align-items-center gap-3 p-3 m-0">
-                                    <i class="fa-regular fa-bookmark fs-3"></i>
-                                    <div class="d-inline-block">
-                                        <p class="m-0 opacity-75">25 Dec</p>
-                                        <p class="m-0">Past Lives</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#coming-soon" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon swip-btn" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#coming-soon" data-bs-slide="next">
-                    <span class="carousel-control-next-icon swip-btn" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5">
-        <div class="container text-center">
-            <a href="#" class="d-inline-block rounded fw-bold py-2 px-5 fs-7 bg-main text-black">Sign in for more
-                access</a>
         </div>
     </section>
 

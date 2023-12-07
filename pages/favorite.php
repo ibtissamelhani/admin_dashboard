@@ -1,5 +1,6 @@
 <?php
 include '../dataBase/connect.php';
+include '../controller/user.php';
 session_start();
 if( $_SESSION['loggedIn'] != 1){
     echo "<script>alert(\"la variable est nulle\")</script>";
@@ -19,6 +20,7 @@ if( $_SESSION['loggedIn'] != 1){
     <title>dashboard</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/home.css">
+    <link rel="stylesheet" href="../assets/css/a.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -101,7 +103,31 @@ if( $_SESSION['loggedIn'] != 1){
             </div>
 
             <!-- content -->
-            <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100">
+            <div class="content m-1 p-md-4 col-md-9 col-9 min-vh-100 ">
+                <div class="d-flex justify-content-arround flex-wrap">
+                <?php
+                $result = getFavorites();
+                while($row = mysqli_fetch_assoc($result)){
+                    $title = $row['title'];
+                    $poster= $row['poster'];
+                    $movie_id = $row['movie_id'];
+                ?>
+                <div class="d-flex flex-column col-3 ">
+                    <img src="../assets/img/<?= $poster?>" alt="Current Poster" class="mt-2 " style="max-width: 200px;">
+                    <div class="d-flex gap-5  align-items-center mt-3">
+                        <span class="text-white "><?= $title?></span>
+                        <div class="like">
+                            <input id="heart-<?= $movie_id?>" type="checkbox" checked />
+                            <label  for="heart-<?= $movie_id?>">❤</label>
+                        </div>
+                        
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+                </div>
+                
 
                 
             </div>

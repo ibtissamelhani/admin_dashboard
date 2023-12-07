@@ -19,7 +19,21 @@
 
 
 
+.booklabel {
+    color: #f5f7f9;
+    cursor: pointer;
+    font-size: 20px;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+}
 
-  
-  
-  
+.book label:hover{
+    color: grey;
+}
+
+.book input[type="checkbox"] {
+    display: none;
+}
+.book input[type="checkbox"]:checked + label {
+    color: rgb(226, 179, 38);
+}
